@@ -1,67 +1,133 @@
 const Dinosaur = require('../src/digi-dino');
 
+let myDinosaur
+
+beforeEach(() => {
+  myDinosaur = new Dinosaur('Derek');
+});
+
 describe('creating a new Dinosaur', () => {
-  it('creates an object with properties' () => {
+  it('creates an object with properties', () => {
     expect(myDinosaur.name).toEqual('Derek')
-    expect(myDinosaur.age).toEqual(1);
-    expect(myDinosaur.fullness).toEqual(30);
-    expect(myDinosaur.fitness).toEqual(30);
-    expect(myDinosaur.energy).toEqual(30);
-    expect(myDinosaur.social).toEqual(50);
-    expect(myDinosaur.cleanliness).toEqual(50);
+    expect(myDinosaur.fullness).toEqual(25);
+    expect(myDinosaur.fitness).toEqual(25);
+    expect(myDinosaur.energy).toEqual(45);
+    expect(myDinosaur.social).toEqual(45);
+    expect(myDinosaur.cleanliness).toEqual(45);
   });
-}):
+});
 
 describe('a day passing', () => {
-  it('increments the age by 1 each day', () => {
-    myDinosaur.growUp();
-    expect(myDinosaur.age).toEqual(2);
+  myDinosaur.dayPasses();
+  it('gets hungry, reducing the fullness by 15', () => {
+    expect(myDinosaur.fullness).toBe(10);
   });
 
-
-});
-
-  it('restarts if your dinosaur is dead', () => {
-    myDinosaur.age = 100;
-    expect(() => myDinosaur.growUp()).to
+  it('gets unfit, reducing the fitness by 10', () => {
+    expect(myDinosaur.fitness).toBe(15);
   });
-});
 
-describe('gets hungry', () =>
-  it('decreases the hunger by 5 when a day passes', () => {
-
+  it('gets tired, reducing the energy by 10', () => {
+    expect(myDinosaur.energy).toBe(35);
   });
-});
 
-describe('gets unfit', () => {
-  it('decreases the ')
-});
+  it('gets dirty reducing the cleanliness by 5', () => {
+    expect(myDinosaur.social).toBe(40);
+  });
 
-describe('it gets tired', () => {});
-
-describe('it gets dirty', () => {});
+  it('gets lonely reducing the social by 5', () => {
+    expect(myDinosaur.cleanliness).toBe(40);
+  });
 
 describe('play', () => {
-  myDinosaur.play();
   it('increments the fitness by 10', () => {
-    expect(myDinosaur.fitness).toEqual();
-  });
-  it('reduces fullness by 5', () => {
     myDinosaur.play();
-    expect(myDinosaur.age).toEqual(2);
-  });
-  it('increments the age by 1 each day', () => {
-    myDinosaur.play();
-    expect(myDinosaur.age).toEqual(2);
+    expect(myDinosaur.fitness).toBe(35);
   });
 });
 
-describe('bedtime', () => {});
+describe('feed', () => {
+  myDinosaur.feed();
+  it('increments the fullness by 10', () => {
+    expect(myDinosaur.fullness).toBe(35);
+  });
+  it('reduces cleanliness by 5', () => {
+    expect(myDinosaur.cleanliness).toBe(30);
+  });
+  it('reduces fitness by 5', () => {
+    expect(myDinosaur.fitness).toBe(20)
+  })
+});
 
-describe('socialise', () => {});
+describe('bedtime', () => {
+  myDinosaur.bedTime();
+  it('increments the energy by 5', () => {
+    expect(myDinosaur.energy).toBe(50);
+  });
+  it('decreases the social by 5', () => {
+    expect(myDinosaur.social).toBe(40);
+  });
+});
 
-describe('pooper-scooper', () => {});
+describe('socialise', () => {
+  myDinosaur.socialise();
+  it('increments the social by 5', () => {
+    expect(myDinosaur.social).toBe(50)
+  });
+  it('decreases the cleanliness by 5', () => {
+    expect(myDinosaur.cleanliness).toBe(40)
+  });
+});
 
-describe('isAlive', () => {});
+describe('pooper-scooper', () => {
+  it('increments the cleanliness by 10', () => {
+    myDinosaur.pooperScooper();
+    expect(myDinosaur.cleanliness).toBe(55)
+  });
+});
 
-describe('checkUp', () => {});
+describe('isAlive', () => {
+  it('returns false if fullness is <= 0', () => {
+    myDinosaur.fullness = 0;
+    myDinosaur.fitness = 25;
+    myDinosaur.energy = 30;
+    myDinosaur.social = 30;
+    myDinosaur.cleanliness = 30;
+    expect(myDinosaur.isAlive()).toEqual(false)
+  });
+  it('returns false if fitness is <= 0', () => {
+    myDinosaur.fullness = 25;
+    myDinosaur.fitness = 0;
+    myDinosaur.energy = 30;
+    myDinosaur.social = 30;
+    myDinosaur.cleanliness = 30;
+    expect(myDinosaur.isAlive()).toEqual(false)
+  });
+  it('returns false if energy is <= 0', () => {
+    myDinosaur.fullness = 25;
+    myDinosaur.fitness = 25;
+    myDinosaur.energy = 0;
+    myDinosaur.social = 30;
+    myDinosaur.cleanliness = 30;
+    expect(myDinosaur.isAlive()).toEqual(false)
+
+  });
+  it('returns false if social is <= 0', () => {
+    myDinosaur.fullness = 25;
+    myDinosaur.fitness = 25;
+    myDinosaur.energy = 30;
+    myDinosaur.social = 0;
+    myDinosaur.cleanliness = 30;
+    expect(myDinosaur.isAlive()).toEqual(false)
+
+  });
+  it('returns false if cleanliness is <= 0', () => {
+    myDinosaur.fullness = 25;
+    myDinosaur.fitness = 25;
+    myDinosaur.energy = 30;
+    myDinosaur.social = 30;
+    myDinosaur.cleanliness = 0;
+    expect(myDinosaur.isAlive()).toEqual(false)
+  });
+
+});
