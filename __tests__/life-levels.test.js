@@ -17,11 +17,10 @@ describe('creating a new Dinosaur', () => {
   });
 });
 
-xdescribe('a day passing', () => {
+describe('a day passing', () => {
   beforeEach(() => {
     myDinosaur.dayPasses();
   });
-
   it('gets hungry, reducing the fullness by 15', () => {
     expect(myDinosaur.fullness).toBe(10);
   });
@@ -42,15 +41,25 @@ xdescribe('a day passing', () => {
     expect(myDinosaur.cleanliness).toBe(35);
   });
 });
-xdescribe('play', () => {
+
+describe('play', () => {
   it('increments the fitness by 10', () => {
     myDinosaur.play();
     expect(myDinosaur.fitness).toBe(35);
   });
+
+  it('doesn`t go past the max fitness', () => {
+    myDinosaur.play();
+    myDinosaur.play();
+    myDinosaur.play();
+    expect(myDinosaur.fitness).toBe(50);
+  });
 });
 
-xdescribe('feed', () => {
-  myDinosaur.feed();
+describe('feed', () => {
+  beforeEach(() => {
+    myDinosaur.feed();
+  });
   it('increments the fullness by 10', () => {
     expect(myDinosaur.fullness).toBe(35);
   });
@@ -62,8 +71,10 @@ xdescribe('feed', () => {
   });
 });
 
-xdescribe('bedtime', () => {
-  myDinosaur.bedTime();
+describe('bedtime', () => {
+  beforeEach(() => {
+    myDinosaur.bedTime();
+  });
   it('increments the energy by 5', () => {
     expect(myDinosaur.energy).toBe(45);
   });
@@ -72,8 +83,10 @@ xdescribe('bedtime', () => {
   });
 });
 
-xdescribe('socialise', () => {
-  myDinosaur.socialise();
+describe('socialise', () => {
+  beforeEach(() => {
+    myDinosaur.socialise();
+  });
   it('increments the social by 5', () => {
     expect(myDinosaur.social).toBe(45);
   });
@@ -82,14 +95,17 @@ xdescribe('socialise', () => {
   });
 });
 
-xdescribe('pooper-scooper', () => {
+describe('pooper-scooper', () => {
   it('increments the cleanliness by 10', () => {
     myDinosaur.pooperScooper();
     expect(myDinosaur.cleanliness).toBe(50);
   });
 });
 
-xdescribe('isAlive', () => {
+describe('isAlive', () => {
+  beforeEach(() => {
+    myDinosaur.isAlive();
+  });
   it('returns false if fullness is <= 0', () => {
     myDinosaur.fullness = 0;
     expect(myDinosaur.isAlive()).toEqual(false);
