@@ -4,7 +4,8 @@
   "description": "A rawesome virtual pet",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint __tests__ src --fix"
   },
   "author": "",
   "license": "ISC",
