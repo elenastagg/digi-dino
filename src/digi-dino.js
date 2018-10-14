@@ -42,7 +42,7 @@ Dinosaur.prototype.dayPasses = function dayPasses() {
 
 Dinosaur.prototype.play = function play() {
   if (!this.isAlive()) {
-    throw new Error('Sorry, your dinosaur has died :-(');
+    throw new Error('Sorry, your dinosaur has died :-(, the game will restart in 3 seconds');
   } else {
     this.fitness += 10;
     if (this.fitness > Dinosaur.MAX_FITNESS) {
@@ -53,7 +53,7 @@ Dinosaur.prototype.play = function play() {
 
 Dinosaur.prototype.feed = function feed() {
   if (!this.isAlive()) {
-    throw new Error('Sorry, your dinosaur has died :-(');
+    throw new Error('Sorry, your dinosaur has died :-(, the game will restart in 3 seconds');
   } else {
     this.fullness += 10;
     this.cleanliness -= 5;
@@ -66,7 +66,7 @@ Dinosaur.prototype.feed = function feed() {
 
 Dinosaur.prototype.bedTime = function bedTime() {
   if (!this.isAlive()) {
-    throw new Error('Sorry, your dinosaur has died :-(');
+    throw new Error('Sorry, your dinosaur has died :-(, the game will restart in 3 seconds');
   } else {
     this.energy += 10;
     this.social -= 5;
@@ -78,7 +78,7 @@ Dinosaur.prototype.bedTime = function bedTime() {
 
 Dinosaur.prototype.socialise = function socialise() {
   if (!this.isAlive()) {
-    throw new Error('Sorry, your dinosaur has died :-(');
+    throw new Error('Sorry, your dinosaur has died :-(, the game will restart in 3 seconds');
   } else {
     this.social += 10;
     this.cleanliness -= 5;
@@ -90,7 +90,7 @@ Dinosaur.prototype.socialise = function socialise() {
 
 Dinosaur.prototype.pooperScooper = function pooperScooper() {
   if (!this.isAlive()) {
-    throw new Error('Sorry, your dinosaur has died :-(');
+    throw new Error('Sorry, your dinosaur has died :-(, the game will restart in 3 seconds');
   } else {
     this.cleanliness += 10;
     if (this.cleanliness > Dinosaur.MAX_CLEAN) {
@@ -98,8 +98,5 @@ Dinosaur.prototype.pooperScooper = function pooperScooper() {
     }
   }
 };
-
-
-console.log('Hello');
 
 module.exports = Dinosaur;
