@@ -4,15 +4,23 @@ import Button from './Button';
 import colors from '../../styles/colors';
 
 const style = StyleSheet.create({
-  inputStyle: {
+  view: {
+    width: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  input: {
     color: colors.midgreen,
     fontSize: 30,
+    margin: 10,
   },
-  buttonBackgroundStyle: {
+  buttonBackground: {
     backgroundColor: colors.blue,
-    width: 100,
+    width: 90,
+    marginLeft: 10,
   },
-  buttonTextStyle: {
+  buttonText: {
     color: 'white',
     fontSize: 30,
   },
@@ -32,18 +40,18 @@ class DinoName extends Component {
 
   render() {
     return (
-      <View style={{ width: '100%' }}>
+      <View style={style.view}>
         <TextInput
-          style={style.inputStyle}
+          style={style.input}
           placeholder="Enter your dino's name"
           onChangeText={text => this.handleTextChange(text)}
           value={this.state.text}
         />
         <Button
-          onPress={() => {}}
+          onPress={() => this.props.navigation.navigate('Game')}
           title="Save"
-          backgroundStyle={style.buttonBackgroundStyle}
-          textStyle={style.buttonTextStyle}
+          backgroundStyle={style.buttonBackground}
+          textStyle={style.buttonText}
         />
       </View>
     );

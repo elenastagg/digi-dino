@@ -8,10 +8,10 @@ import {
 
 const style = StyleSheet.create({
   container: {
-    borderRadius: 15,
+    borderRadius: 25,
   },
   text: {
-    padding: 8,
+    padding: 5,
     textAlign: 'center',
   },
 });
