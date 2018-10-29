@@ -12,6 +12,7 @@
     "lint": "eslint __tests__ src --fix"
   },
   "dependencies": {
+    "eslint": "^5.7.0",
     "expo": "^30.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",

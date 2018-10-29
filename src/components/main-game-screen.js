@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import colors from '../../styles/colors';
 import Dinosaur from '../digi-dino';
+import Button from './Button';
 
 const style = StyleSheet.create({
   nameStyle: {
@@ -25,6 +26,26 @@ class MainGameScreen extends Component {
         <Text style={style.nameStyle}>
           {this.state.Dinosaur.name}
         </Text>
+        <Button
+          title = "Feed Me"
+          backgroundStyle={style.buttonBackground}
+          textStyle={style.buttonText}
+        />
+         <Button
+          title = "Play"
+          backgroundStyle={style.buttonBackground}
+          textStyle={style.buttonText}
+        />
+        <Button
+          title = "Sleep"
+          backgroundStyle={style.buttonBackground}
+          textStyle={style.buttonText}
+        />
+        <Button
+          title = "Clean"
+          backgroundStyle={style.buttonBackground}
+          textStyle={style.buttonText}
+        />
       </View>
     );
   }
