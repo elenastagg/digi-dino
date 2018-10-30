@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'contain',
-    backgroundColor: '#999999',
+    //backgroundColor: '#999999',
   },
 });
 
@@ -27,7 +27,7 @@ class Animation extends Component {
     return (
       <View>
         <Image
-          source={defineFrames[this.props.animationName].frames[0].imgSrc}
+          source={defineFrames[this.props.animationName].frames[1].imgSrc}
           style={styles.petScreenImage}
         />
       </View>

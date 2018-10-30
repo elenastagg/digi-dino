@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { LinearGradient } from 'expo';
+import Button from '../Button';
 import colors from '../../../styles/colors';
 import Dinosaur from '../../digi-dino';
 import style from './styles';
@@ -16,11 +17,15 @@ const morning = [
 
 // const times = [morning, day, evening];
 
+
+
 class MainGameScreen extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
       Dinosaur: new Dinosaur(props.navigation.getParam('name')),
+      myDummyState: 0
     };
   }
 
@@ -38,7 +43,7 @@ class MainGameScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <LinearGradient
-          colors={morning}
+          colors={day}
           style={{
             position: 'absolute',
             left: 0,
@@ -116,6 +121,15 @@ class MainGameScreen extends Component {
           <View style={style.petScreenContainer}>
             <PetScreen />
           </View>
+          <Button
+            onPress={() => {
+              this.state.Dinosaur.feed();
+              this.setState({myDummyState: this.state.myDummyState + 1})
+            }}
+            title="Feed"
+            backgroundStyle={style.buttonBackground}
+            textStyle={style.buttonText}
+        />
         </View>
       </View>
     );
