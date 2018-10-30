@@ -10,4 +10,5 @@ const colors = {
   orange: '#fdc35a',
 };
 
+
 export default colors;

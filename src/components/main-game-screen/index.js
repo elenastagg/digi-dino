@@ -13,7 +13,7 @@ const morning = [
   '#78C664', '#2FAB63', '#008E63',
 ];
 
-const times = [morning, day, evening];
+// const times = [morning, day, evening];
 
 class MainGameScreen extends Component {
   constructor(props) {
@@ -22,6 +22,7 @@ class MainGameScreen extends Component {
       Dinosaur: new Dinosaur(props.navigation.getParam('name')),
     };
   }
+
 
   render() {
     const barWidth = (Dimensions.get('screen').width / 2) - 30;
@@ -33,7 +34,7 @@ class MainGameScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <LinearGradient
-          colors={day}
+          colors={morning}
           style={{
             position: 'absolute',
             left: 0,
