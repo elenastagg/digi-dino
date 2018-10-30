@@ -5,9 +5,6 @@ const colors = {
   lightblue: '#CFF5FF',
   white: '#fff',
   darkblue: '#191970',
-  pink: '#FF69B4',
-  lightpink: '#FFC0CB',
-  orange: '#fdc35a',
 };
 
 

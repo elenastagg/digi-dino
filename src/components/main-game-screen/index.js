@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo';
 import colors from '../../../styles/colors';
 import Dinosaur from '../../digi-dino';
 import style from './styles';
+import PetScreen from '../PetScreen';
 
 const evening = [colors.darkblue, colors.blue, colors.darkgreen];
 const day = [colors.blue, colors.lightblue, colors.midgreen];
@@ -23,7 +24,10 @@ class MainGameScreen extends Component {
     };
   }
 
-
+  // componentDidMount: function = () => {
+  //   const dayPasses = setInterval(dayPasses(), 3000);
+  //   this.setState({dayPasses: dayPasses});
+  // }
   render() {
     const barWidth = (Dimensions.get('screen').width / 2) - 30;
     const progressCustomStyle = {
@@ -108,7 +112,11 @@ class MainGameScreen extends Component {
             </View>
           </View>
         </View>
-        <View style={style.container2} />
+        <View style={style.container2}>
+          <View style={style.petScreenContainer}>
+            <PetScreen />
+          </View>
+        </View>
       </View>
     );
   }

@@ -3,13 +3,11 @@ import colors from '../../../styles/colors';
 
 const style = StyleSheet.create({
   container: {
-    // backgroundColor: colors.lightblue,
     flex: 2,
     flexDirection: 'column',
     padding: 5,
   },
   container2: {
-    // backgroundColor: colors.lightblue,
     flex: 7,
     flexDirection: 'column',
     padding: 5,
@@ -33,6 +31,12 @@ const style = StyleSheet.create({
     color: colors.white,
     fontSize: 14,
   },
+  petScreenContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '50%',
+  },
 });
-
 export default style;
