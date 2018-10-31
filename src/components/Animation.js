@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'contain',
-    backgroundColor: '#999999',
+    // backgroundColor: '#999999',
   },
 });
 

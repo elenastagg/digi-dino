@@ -32,7 +32,7 @@ const style = StyleSheet.create({
     fontSize: 14,
   },
   petScreenContainer: {
-    display: 'flex',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',

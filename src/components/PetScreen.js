@@ -11,10 +11,10 @@ const gameScreenWidth = (width / 100) * 80;
 // StyleSheet
 const styles = StyleSheet.create({
   petScreen: {
-    borderStyle: 'solid',
-    borderColor: '#000000',
-    borderWidth: 1.25,
-    backgroundColor: '#FFFFFF',
+    // borderStyle: 'solid',
+    // borderColor: '#000000',
+    // borderWidth: 1.25,
+    // backgroundColor: '#FFFFFF',
     overflow: 'hidden',
     height: gameScreenWidth,
     width: gameScreenWidth,
