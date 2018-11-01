@@ -13,7 +13,6 @@ const defineFrames = {
         ],
     },
     normalState: {
-        numOfFrames: 2,
         frames: [
             {
                 frame: 1,

@@ -16,16 +16,12 @@ const morning = [
 ];
 
 // const times = [morning, day, evening];
-
-
-
 class MainGameScreen extends Component {
-  
   constructor(props) {
     super(props);
     this.state = {
-      Dinosaur: new Dinosaur(props.navigation.getParam('name')),
-      myDummyState: 0
+      Dinosaur: new Dinosaur(),
+      myDummyState: 0,
     };
   }
 
@@ -124,12 +120,12 @@ class MainGameScreen extends Component {
           <Button
             onPress={() => {
               this.state.Dinosaur.feed();
-              this.setState({myDummyState: this.state.myDummyState + 1})
+              this.setState({ myDummyState: this.state.myDummyState + 1 });
             }}
             title="Feed"
             backgroundStyle={style.buttonBackground}
             textStyle={style.buttonText}
-        />
+          />
         </View>
       </View>
     );
