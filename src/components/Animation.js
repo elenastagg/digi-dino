@@ -18,48 +18,40 @@ class Animation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentFrame: 0,
+      currentFrame: 1,
     };
     this.handleAnimation = this.handleAnimation.bind(this);
   }
 
   handleAnimation() {
-      /*
+     
     // Access the relevant animation object inside defineFrames
     const animation = defineFrames[this.props.animationName];
     // Bring back the frames array for the relevant animation
     const animationFrames = animation.frames;
-    // Find out how many frames are in the array
-    const lengthOfFrames = animation.frames.length;
-    // Loop through the frames array, update the state of the Image once per frame
-    animationFrames.forEach(function foo(currentFrame) {
-    console.log('currentFrame: ', currentFrame.frame);
+
+    animationFrames.forEach((currentAnimationFrame, i) => {
       setTimeout(
-        function () {
-          this.Animation.setState({ currentFrame: currentFrame.frame });
-        },
-        2000
+        () => this.setState({ currentFrame: currentAnimationFrame.frame }),
+        500 * i
       );
     });
-    // Return to default animation once complete */
 
-    const myFunction = (e) => {
-      console.log("test");
-    };
-
-    setTimeout(myFunction, 2000);
-    const myArray = [0, 1, 2, 3];
-
-    myArray.forEach(function foo(e) {
-      myFunction(e);
-    });
   }
 
   render() {
+
+    const currentFrames = defineFrames[this.props.animationName].frames;
+    const myFrame  = currentFrames.find(f => { 
+      return f.frame === this.state.currentFrame;
+    })
+
+    console.log('currentFrames: ',currentFrames);
+    console.log('myFrame: ',myFrame);
     return (
       <View>
         <Image
-          source={defineFrames[this.props.animationName].frames[this.state.currentFrame].imgSrc}
+          source={myFrame.imgSrc}
           style={styles.petScreenImage}
         />
       </View>

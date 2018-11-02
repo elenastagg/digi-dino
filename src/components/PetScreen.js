@@ -34,7 +34,7 @@ class PetScreen extends Component {
   render() {
     return (
       <View style={styles.petScreen}>
-        <Animation animationName={this.state.animationName} duration={this.state.duration} />
+        <Animation animationName={this.state.animationName} duration={this.state.duration} notify />
       </View>
     );
   }
