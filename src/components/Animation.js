@@ -22,6 +22,12 @@ class Animation extends Component {
     };
   }
 
+  handleAnimation() {
+    const { animationName }  = this.props;
+    const getlength = defineFrames[animationName].frames.length;
+    console.log(getlength);
+  }
+
   render() {
     this.handleAnimation();
     return (
@@ -32,12 +38,6 @@ class Animation extends Component {
         />
       </View>
     );
-  };
-
-  handleAnimation() {
-    const { animationName }  = this.props;
-    const getlength = defineFrames[animationName].frames.length;
-    console.log(getlength);
   }
 }
 
