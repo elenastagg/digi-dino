@@ -9,13 +9,15 @@ const style = StyleSheet.create({
   },
   nameStyle: {
     color: colors.white,
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: 'bold',
+    fontFamily: 'Chewy',
   },
   row: {
     flex: 1,
     flexDirection: 'row',
     marginLeft: 10,
+    marginTop: 10,
   },
   column: {
     flex: 1,
@@ -24,7 +26,8 @@ const style = StyleSheet.create({
   },
   actionLabel: {
     color: colors.white,
-    fontSize: 14,
+    fontSize: 18,
+    fontFamily: 'Chewy',
   },
 
   /* Animation */
@@ -50,17 +53,24 @@ const style = StyleSheet.create({
 
   /* Restart game screen */
   container4: {
-    flex: 2,
+    flex: 7,
     flexDirection: 'column',
     backgroundColor: colors.darkgreen,
-    paddingTop: 30,
+    paddingTop: 200,
   },
 
-  message: {
-    fontSize: 30,
+  message1: {
+    fontFamily: 'Chewy',
+    fontSize: 35,
     color: colors.white,
     fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  message2: {
     fontFamily: 'Chewy',
+    fontSize: 30,
+    color: colors.midgreen,
+    fontWeight: 'bold',
     textAlign: 'center',
   },
 });

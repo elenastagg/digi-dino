@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { TouchableHighlight, Alert, Modal, View, Text, Dimensions } from 'react-native';
+import {
+  TouchableHighlight,
+  Alert,
+  Modal, View,
+  Text,
+  Dimensions,
+} from 'react-native';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
-import { LinearGradient, Font } from 'expo';
+import { LinearGradient } from 'expo';
 import colors from '../colors';
 import Dinosaur from '../../digi-dino';
 import style from './styles';
 import PetScreen from '../pet-screen';
 import CareIcon from '../icon';
-const Chewy = require('../../../assets/fonts/Chewy-Regular.ttf');
 
 // import SvgExample from '../custom-icons/custom-icons';
 
@@ -37,7 +42,7 @@ class MainGameScreen extends Component {
         error.message;
         this.setState({
           modalVisible: true,
-          errorMessage: error.message
+          errorMessage: error.message,
         });
       }
       this.setState({
@@ -47,19 +52,13 @@ class MainGameScreen extends Component {
     }, 1000);
   }
 
-  componentDidMount() {
-    Font.loadAsync({
-      Chewy,
-    });
-  }
-
 
   handlePress(action) {
     try {
       this.state.Dinosaur[action]();
     } catch (error) {
       error.message;
-      this.setState({modalVisible: true});
+      this.setState({ modalVisible: true });
     }
     this.setState({
       Dinosaur: this.state.Dinosaur,
@@ -213,26 +212,20 @@ class MainGameScreen extends Component {
         >
           <View style={style.container4}>
             <View>
-              <Text style={style.message}>{this.state.errorMessage}</Text>
-
-              <TouchableHighlight
-                onPress={() => {
-                  this.setState({ modalVisible: false });
-                  this.props.navigation.navigate('Home');
-                }}
-              >
-                <Text style={{
-                  fontFamily: 'Chewy',
-                  fontSize: 30,
-                  color: colors.white,
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                }}
-                >
+              <Text style={style.message1}>{this.state.errorMessage}</Text>
+            </View>
+            <TouchableHighlight
+              onPress={() => {
+                this.setState({ modalVisible: false });
+                this.props.navigation.navigate('Home');
+              }}
+            >
+              <View style={{ paddingTop: 50 }}>
+                <Text style={style.message2}>
                   Start New Game
                 </Text>
-              </TouchableHighlight>
-            </View>
+              </View>
+            </TouchableHighlight>
           </View>
         </Modal>
       </View>
