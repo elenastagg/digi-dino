@@ -29,7 +29,7 @@ class MainGameScreen extends Component {
       this.state.Dinosaur.dayPasses();
       this.setState({
         Dinosaur: this.state.Dinosaur,
-        colors: times[times.indexOf(this.state.colors) + 1],
+        colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
     }, 3000);
   }
