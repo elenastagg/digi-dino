@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { LinearGradient } from 'expo';
-import colors from '../../../styles/colors';
+import colors from '../colors';
 import Dinosaur from '../../digi-dino';
 import style from './styles';
-import PetScreen from '../PetScreen';
+import PetScreen from '../pet-screen';
 import CareIcon from '../icon';
+// import SvgExample from '../custom-icons/custom-icons';
 
 const evening = [colors.darkblue, colors.blue, colors.darkgreen];
 const day = [colors.blue, colors.lightblue, colors.midgreen];
@@ -33,7 +34,6 @@ class MainGameScreen extends Component {
     }, 3000);
   }
 
-
   handlePress(action) {
     this.state.Dinosaur[action]();
     this.setState({
@@ -48,8 +48,6 @@ class MainGameScreen extends Component {
       borderRadius: 10,
       borderColor: colors.white,
     };
-
-    // componentDidMount(dayPasses)
     return (
       <View style={{ flex: 1 }}>
         <LinearGradient
@@ -62,7 +60,11 @@ class MainGameScreen extends Component {
             bottom: 0,
           }}
         />
+
+        {/* Progress bar container1 starts */}
         <View style={style.container}>
+
+          {/* Row 1 */}
           <View style={style.row}>
             <View style={style.column}>
               <Text style={style.actionLabel}>
@@ -81,6 +83,7 @@ class MainGameScreen extends Component {
             </View>
           </View>
 
+          {/* Row 2 */}
           <View style={style.row}>
             <View style={style.column}>
               <Text style={style.actionLabel}>
@@ -104,6 +107,7 @@ class MainGameScreen extends Component {
             </View>
           </View>
 
+          {/* Row 3 */}
           <View style={style.row}>
             <View style={style.column}>
               <Text style={style.actionLabel}>
@@ -126,38 +130,53 @@ class MainGameScreen extends Component {
               />
             </View>
           </View>
+          {/* end of progress bars container 1 */}
         </View>
+
+        {/* Dinosaur container2 starts */}
         <View style={style.container2}>
           <View style={style.petScreenContainer}>
             <PetScreen />
           </View>
-          <View>
-          <CareIcon
-            name="food"
-            type="material-community"
-            onPress={() => this.handlePress('feed')}
-          />
-          <CareIcon
-            name="food"
-            type="material-community"
-            onPress={() => this.handlePress('play')}
-          />
-          <CareIcon
-            name="food"
-            type="material-community"
-            onPress={() => this.handlePress('bedTime')}
-          />
-          <CareIcon
-            name="food"
-            type="material-community"
-            onPress={() => this.handlePress('socialise')}
-          />
-          <CareIcon
-            name="food"
-            type="material-community"
-            onPress={() => this.handlePress('pooperScooper')}
-          />
+        </View>
+        {/* Dinosaur container2 ends */}
+
+        {/* Icon container3 starts */}
+        <View style={style.container3}>
+
+          {/* Row 1 */}
+          <View style={style.iconRow}>
+            <CareIcon
+              name="cutlery"
+              type="font-awesome"
+              onPress={() => this.handlePress('feed')}
+            />
+            <CareIcon
+              name="soccer-ball-o"
+              type="font-awesome"
+              onPress={() => this.handlePress('play')}
+            />
+            <CareIcon
+              name="bed"
+              type="font-awesome"
+              onPress={() => this.handlePress('bedTime')}
+            />
           </View>
+
+          {/* Row 2 */}
+          <View style={style.iconRow}>
+            <CareIcon
+              name="chat"
+              type="entypo"
+              onPress={() => this.handlePress('socialise')}
+            />
+            <CareIcon
+              name="food"
+              type="material-community"
+              onPress={() => this.handlePress('pooperScooper')}
+            />
+          </View>
+          {/* Icon container3 ends */}
         </View>
       </View>
     );

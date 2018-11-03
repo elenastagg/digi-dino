@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-import defineFrames from './defineFrames';
+import defineFrames from './define-frames';
 
 // Styles
 

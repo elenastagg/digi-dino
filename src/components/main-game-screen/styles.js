@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../../styles/colors';
+import colors from '../colors';
 
 const style = StyleSheet.create({
   container: {
@@ -8,7 +8,12 @@ const style = StyleSheet.create({
     padding: 5,
   },
   container2: {
-    flex: 7,
+    flex: 4.5,
+    flexDirection: 'column',
+    padding: 5,
+  },
+  container3: {
+    flex: 2.5,
     flexDirection: 'column',
     padding: 5,
   },
@@ -31,6 +36,14 @@ const style = StyleSheet.create({
     color: colors.white,
     fontSize: 14,
   },
+
+  iconRow: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    padding: 20,
+  },
   petScreenContainer: {
     flex: 1,
     alignItems: 'center',
@@ -38,7 +51,7 @@ const style = StyleSheet.create({
     width: '100%',
     height: '50%',
   },
-   buttonBackground: {
+  buttonBackground: {
     backgroundColor: colors.blue,
     width: 90,
     marginLeft: 10,

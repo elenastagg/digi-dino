@@ -1,27 +1,30 @@
 import React from 'react';
-import colors from '../../styles/colors';
+import colors from './colors';
 import { Icon } from 'react-native-elements';
-import { View } from 'react-native';
 
 const CareIcon = props => (
-    <Icon
-      raised
-      name={props.name}
-      type={props.type}
-      color={colors.blue}
-      iconStyle={
-        {
-          padding: 1,
-          fontSize: 42,
-        }
+  <Icon
+    reverse
+    raised
+    name={props.name}
+    type={props.type}
+    color={colors.blue}
+    iconStyle={
+      {
+        fontSize: 36,
+        flex: 0,
+        justifyContent: 'center',
       }
-      containerStyle={
-        {
-          backgroundColor: colors.white,
-          margin: 20,
-        }
+    }
+    containerStyle={
+      {
+        backgroundColor: colors.midgreen,
+        width: 63,
+        height: 63,
+        borderRadius: 600,
       }
-      onPress={props.onPress}
-    />
+    }
+    onPress={props.onPress}
+  />
 );
 export default CareIcon;
