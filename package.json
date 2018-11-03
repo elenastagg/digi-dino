@@ -11,6 +11,11 @@
     "test": "jest",
     "lint": "eslint __tests__ src --fix"
   },
+  "rnpm": {
+    "assets": [
+  "./src/assets/fonts/"
+    ]
+},
   "dependencies": {
     "expo": "^30.0.1",
     "react": "^16.3.1",

@@ -8,9 +8,9 @@
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/digi-dino-logo.png",
+    "icon": "./assets/digi-dino-logo.png",
     "splash": {
-      "image": "./src/assets/dino-splash.png",
+      "image": "./assets/dino-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#174f37"
     },

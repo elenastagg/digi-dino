@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { TouchableHighlight, Alert, Modal, View, Text, Dimensions } from 'react-native';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
-import { LinearGradient } from 'expo';
+import { LinearGradient, Font } from 'expo';
 import colors from '../colors';
 import Dinosaur from '../../digi-dino';
 import style from './styles';
 import PetScreen from '../pet-screen';
 import CareIcon from '../icon';
+const Chewy = require('../../../assets/fonts/Chewy-Regular.ttf');
+
 // import SvgExample from '../custom-icons/custom-icons';
 
 const evening = [colors.darkblue, colors.blue, colors.darkgreen];
@@ -24,18 +26,41 @@ class MainGameScreen extends Component {
     this.state = {
       Dinosaur: new Dinosaur(props.navigation.getParam('name')),
       colors: morning,
+      modalVisible: false,
     };
-    window.setInterval(() => {
-      this.state.Dinosaur.dayPasses();
+
+    const dayInterval = window.setInterval(() => {
+      try {
+        this.state.Dinosaur.dayPasses();
+      } catch (error) {
+        window.clearInterval(dayInterval);
+        error.message;
+        this.setState({
+          modalVisible: true,
+          errorMessage: error.message
+        });
+      }
       this.setState({
         Dinosaur: this.state.Dinosaur,
         colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
-    }, 3000);
+    }, 1000);
   }
 
+  componentDidMount() {
+    Font.loadAsync({
+      Chewy,
+    });
+  }
+
+
   handlePress(action) {
-    this.state.Dinosaur[action]();
+    try {
+      this.state.Dinosaur[action]();
+    } catch (error) {
+      error.message;
+      this.setState({modalVisible: true});
+    }
     this.setState({
       Dinosaur: this.state.Dinosaur,
     });
@@ -171,13 +196,45 @@ class MainGameScreen extends Component {
               onPress={() => this.handlePress('socialise')}
             />
             <CareIcon
-              name="food"
+              name="emoticon-poop"
               type="material-community"
               onPress={() => this.handlePress('pooperScooper')}
             />
           </View>
           {/* Icon container3 ends */}
         </View>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}
+        >
+          <View style={style.container4}>
+            <View>
+              <Text style={style.message}>{this.state.errorMessage}</Text>
+
+              <TouchableHighlight
+                onPress={() => {
+                  this.setState({ modalVisible: false });
+                  this.props.navigation.navigate('Home');
+                }}
+              >
+                <Text style={{
+                  fontFamily: 'Chewy',
+                  fontSize: 30,
+                  color: colors.white,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}
+                >
+                  Start New Game
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }

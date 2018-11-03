@@ -12,16 +12,18 @@ const CareIcon = props => (
     iconStyle={
       {
         fontSize: 36,
-        flex: 0,
-        justifyContent: 'center',
+        padding: 10,
       }
     }
     containerStyle={
       {
         backgroundColor: colors.midgreen,
-        width: 63,
-        height: 63,
+        width: 60,
+        height: 60,
         borderRadius: 600,
+        flex: 0,
+        justifyContent: 'center',
+        alignContent: 'center',
       }
     }
     onPress={props.onPress}

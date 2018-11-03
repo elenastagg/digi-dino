@@ -7,16 +7,6 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     padding: 5,
   },
-  container2: {
-    flex: 4.5,
-    flexDirection: 'column',
-    padding: 5,
-  },
-  container3: {
-    flex: 2.5,
-    flexDirection: 'column',
-    padding: 5,
-  },
   nameStyle: {
     color: colors.white,
     fontSize: 22,
@@ -37,6 +27,19 @@ const style = StyleSheet.create({
     fontSize: 14,
   },
 
+  /* Animation */
+  container2: {
+    flex: 4.5,
+    flexDirection: 'column',
+    padding: 5,
+  },
+
+  /* Icons */
+  container3: {
+    flex: 2.5,
+    flexDirection: 'column',
+    padding: 5,
+  },
   iconRow: {
     flex: 1,
     flexDirection: 'row',
@@ -44,21 +47,21 @@ const style = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  petScreenContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '50%',
+
+  /* Restart game screen */
+  container4: {
+    flex: 2,
+    flexDirection: 'column',
+    backgroundColor: colors.darkgreen,
+    paddingTop: 30,
   },
-  buttonBackground: {
-    backgroundColor: colors.blue,
-    width: 90,
-    marginLeft: 10,
-  },
-  buttonText: {
-    color: 'white',
+
+  message: {
     fontSize: 30,
+    color: colors.white,
+    fontWeight: 'bold',
+    fontFamily: 'Chewy',
+    textAlign: 'center',
   },
 });
 export default style;
