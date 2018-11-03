@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
-import Button from './Button';
-import colors from '../../styles/colors';
+import Button from './button';
+import colors from './colors';
 
 const style = StyleSheet.create({
   view: {

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { LinearGradient } from 'expo';
-import colors from '../../../styles/colors';
+import colors from '../colors';
 import Dinosaur from '../../digi-dino';
 import style from './styles';
-import PetScreen from '../PetScreen';
+import PetScreen from '../pet-screen';
+import CareIcon from '../icon';
+// import SvgExample from '../custom-icons/custom-icons';
 
 const evening = [colors.darkblue, colors.blue, colors.darkgreen];
 const day = [colors.blue, colors.lightblue, colors.midgreen];
@@ -14,20 +16,31 @@ const morning = [
   '#78C664', '#2FAB63', '#008E63',
 ];
 
-// const times = [morning, day, evening];
+const times = [morning, day, evening];
 
 class MainGameScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Dinosaur: new Dinosaur(props.navigation.getParam('name')),
+      colors: morning,
     };
+    window.setInterval(() => {
+      this.state.Dinosaur.dayPasses();
+      this.setState({
+        Dinosaur: this.state.Dinosaur,
+        colors: times[times.indexOf(this.state.colors) + 1],
+      });
+    }, 3000);
   }
 
-  // componentDidMount: function = () => {
-  //   const dayPasses = setInterval(dayPasses(), 3000);
-  //   this.setState({dayPasses: dayPasses});
-  // }
+  handlePress(action) {
+    this.state.Dinosaur[action]();
+    this.setState({
+      Dinosaur: this.state.Dinosaur,
+    });
+  }
+
   render() {
     const barWidth = (Dimensions.get('screen').width / 2) - 30;
     const progressCustomStyle = {
@@ -38,7 +51,7 @@ class MainGameScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <LinearGradient
-          colors={morning}
+          colors={this.state.colors}
           style={{
             position: 'absolute',
             left: 0,
@@ -47,7 +60,11 @@ class MainGameScreen extends Component {
             bottom: 0,
           }}
         />
+
+        {/* Progress bar container1 starts */}
         <View style={style.container}>
+
+          {/* Row 1 */}
           <View style={style.row}>
             <View style={style.column}>
               <Text style={style.actionLabel}>
@@ -66,6 +83,7 @@ class MainGameScreen extends Component {
             </View>
           </View>
 
+          {/* Row 2 */}
           <View style={style.row}>
             <View style={style.column}>
               <Text style={style.actionLabel}>
@@ -89,6 +107,7 @@ class MainGameScreen extends Component {
             </View>
           </View>
 
+          {/* Row 3 */}
           <View style={style.row}>
             <View style={style.column}>
               <Text style={style.actionLabel}>
@@ -111,11 +130,53 @@ class MainGameScreen extends Component {
               />
             </View>
           </View>
+          {/* end of progress bars container 1 */}
         </View>
+
+        {/* Dinosaur container2 starts */}
         <View style={style.container2}>
           <View style={style.petScreenContainer}>
             <PetScreen />
           </View>
+        </View>
+        {/* Dinosaur container2 ends */}
+
+        {/* Icon container3 starts */}
+        <View style={style.container3}>
+
+          {/* Row 1 */}
+          <View style={style.iconRow}>
+            <CareIcon
+              name="cutlery"
+              type="font-awesome"
+              onPress={() => this.handlePress('feed')}
+            />
+            <CareIcon
+              name="soccer-ball-o"
+              type="font-awesome"
+              onPress={() => this.handlePress('play')}
+            />
+            <CareIcon
+              name="bed"
+              type="font-awesome"
+              onPress={() => this.handlePress('bedTime')}
+            />
+          </View>
+
+          {/* Row 2 */}
+          <View style={style.iconRow}>
+            <CareIcon
+              name="chat"
+              type="entypo"
+              onPress={() => this.handlePress('socialise')}
+            />
+            <CareIcon
+              name="food"
+              type="material-community"
+              onPress={() => this.handlePress('pooperScooper')}
+            />
+          </View>
+          {/* Icon container3 ends */}
         </View>
       </View>
     );

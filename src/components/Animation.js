@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-import defineFrames from './defineFrames';
+import defineFrames from './define-frames';
 
 // Styles
 
@@ -22,6 +22,12 @@ class Animation extends Component {
     };
   }
 
+  handleAnimation() {
+    const { animationName }  = this.props;
+    const getlength = defineFrames[animationName].frames.length;
+    console.log(getlength);
+  }
+
   render() {
     this.handleAnimation();
     return (
@@ -32,12 +38,6 @@ class Animation extends Component {
         />
       </View>
     );
-  };
-
-  handleAnimation() {
-    const { animationName }  = this.props;
-    const getlength = defineFrames[animationName].frames.length;
-    console.log(getlength);
   }
 }
 

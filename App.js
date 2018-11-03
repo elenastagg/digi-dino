@@ -1,5 +1,5 @@
 import React from 'react';
-import DinoName from './src/components/dino-name';
+import DinoName from './src/components/home';
 import MainGameScreen from './src/components/main-game-screen';
 import { createStackNavigator } from 'react-navigation';
 
@@ -9,7 +9,7 @@ const RootStack = createStackNavigator(
     Game: MainGameScreen,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Game',
   }
 );
 
