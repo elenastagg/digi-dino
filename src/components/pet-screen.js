@@ -23,17 +23,25 @@ class PetScreen extends Component {
     super(props);
     this.state = {
       animationName: 'normalState',
-      duration: 2000,
+      numOfloops: 2,
+      infiniteLoop: true,
     };
+    this.triggerDefaultAnimation = this.triggerDefaultAnimation.bind(this);
+  }
+
+  triggerDefaultAnimation() {
+    console.log('default animation triggered');
+    // console.log('THIS: ', that);
+    // this.setState({ animationName: 'normalState' });
   }
 
   render() {
     return (
       <View style={styles.petScreen}>
-        <Animation animationName={this.state.animationName} duration={this.state.duration} />
+        <Animation animationName={this.state.animationName} numOfLoops={this.state.numOfloops} infiniteLoop={this.state.infiniteLoop} />
       </View>
     );
   }
-};
+}
 
 export default PetScreen;
