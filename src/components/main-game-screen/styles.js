@@ -3,6 +3,7 @@ import colors from '../colors';
 
 const style = StyleSheet.create({
   container: {
+    paddingTop: 45,
     flex: 2,
     flexDirection: 'column',
     padding: 5,

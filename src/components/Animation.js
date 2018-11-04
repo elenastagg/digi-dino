@@ -25,7 +25,6 @@ class Animation extends Component {
   handleAnimation() {
     const { animationName }  = this.props;
     const getlength = defineFrames[animationName].frames.length;
-    console.log(getlength);
   }
 
   render() {
