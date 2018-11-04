@@ -176,9 +176,7 @@ class MainGameScreen extends Component {
 
         {/* Dinosaur container2 starts */}
         <View style={style.container2}>
-          <View style={style.petScreenContainer}>
-            <PetScreen />
-          </View>
+          <PetScreen />
         </View>
         {/* Dinosaur container2 ends */}
 

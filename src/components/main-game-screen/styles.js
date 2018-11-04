@@ -3,13 +3,14 @@ import colors from '../colors';
 
 const style = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 3,
     flexDirection: 'column',
     padding: 5,
+    paddingTop: 30,
   },
   nameStyle: {
     color: colors.white,
-    fontSize: 26,
+    fontSize: 30,
     fontWeight: 'bold',
     fontFamily: 'Chewy',
   },
@@ -34,7 +35,8 @@ const style = StyleSheet.create({
   container2: {
     flex: 4,
     flexDirection: 'column',
-    padding: 5,
+    paddingBottom: 30,
+    marginBottom: 20,
   },
 
   /* Icons */
@@ -54,7 +56,7 @@ const style = StyleSheet.create({
 
   /* Restart game screen */
   container4: {
-    flex: 7,
+    flex: 1,
     flexDirection: 'column',
     backgroundColor: colors.darkgreen,
     paddingTop: 200,
