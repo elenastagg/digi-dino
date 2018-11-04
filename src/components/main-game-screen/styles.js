@@ -32,16 +32,17 @@ const style = StyleSheet.create({
 
   /* Animation */
   container2: {
-    flex: 4.5,
+    flex: 4,
     flexDirection: 'column',
     padding: 5,
   },
 
   /* Icons */
   container3: {
-    flex: 2.5,
+    flex: 3,
     flexDirection: 'column',
     padding: 5,
+    paddingTop: 20,
   },
   iconRow: {
     flex: 1,

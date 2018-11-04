@@ -11,6 +11,7 @@ class App extends React.Component {
     isLoading: true,
     Dinosaur: null,
     modalVisible: false,
+    errorMessage: '',
   };
 
   handleNameSubmit = (name) => {
@@ -35,15 +36,18 @@ class App extends React.Component {
   };
 
   handleGameEnds = () => {
+    window.clearInterval(this.dayInterval);
     this.setState({
       Dinosaur: null,
+      modalVisible: false,
+      errorMessage: '',
     });
   };
 
   handleDayPasses = () => {
     this.dayInterval = window.setInterval(() => {
       this.handlePress('dayPasses');
-    }, 5000);
+    }, 2000);
   };
 
   render() {
