@@ -1,37 +1,78 @@
 import React from 'react';
 import DinoName from './src/components/home';
 import MainGameScreen from './src/components/main-game-screen';
-import { createStackNavigator } from 'react-navigation';
 import { Font, AppLoading } from 'expo';
+import Dinosaur from './src/digi-dino';
 
 const Chewy = require('./assets/fonts/Chewy-Regular.ttf');
 
-const RootStack = createStackNavigator(
-  {
-    Home: DinoName,
-    Game: MainGameScreen,
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
-
 class App extends React.Component {
   state = {
-    fontLoaded: false,
+    isLoading: true,
+    Dinosaur: null,
+    modalVisible: false,
+  };
+
+  handleNameSubmit = (name) => {
+    this.setState({
+      Dinosaur: new Dinosaur(name),
+    });
+  };
+
+  handlePress = (action) => {
+    try {
+      this.state.Dinosaur[action]();
+      this.setState({
+        Dinosaur: this.state.Dinosaur,
+      });
+    } catch (error) {
+      window.clearInterval(this.dayInterval);
+      this.setState({
+        modalVisible: true,
+        errorMessage: error.message,
+      });
+    }
+  };
+
+  handleGameEnds = () => {
+    this.setState({
+      Dinosaur: null,
+    });
+  };
+
+  handleDayPasses = () => {
+    this.dayInterval = window.setInterval(() => {
+      this.handlePress('dayPasses');
+    }, 5000);
   };
 
   render() {
-    if (this.state.fontLoaded) {
+    /* Waits for font to load before showing the home screen */
+    if (this.state.isLoading) {
       return (
-        <RootStack />
+        <AppLoading
+          startAsync={() => Font.loadAsync({ Chewy })}
+          onFinish={() => this.setState({ isLoading: false })}
+        />
       );
     }
 
+    /* if dinosaur is dead (null ) show the home screen */
+    if (this.state.Dinosaur === null) {
+      return (
+        <DinoName
+          onSubmit={this.handleNameSubmit}
+        />
+      );
+    }
     return (
-      <AppLoading
-        startAsync={() => Font.loadAsync({ Chewy })}
-        onFinish={() => this.setState({ fontLoaded: true })}
+      <MainGameScreen
+        dinosaur={this.state.Dinosaur}
+        onPress={this.handlePress}
+        modalVisible={this.state.modalVisible}
+        errorMessage={this.state.errorMessage}
+        gameEnds={this.handleGameEnds}
+        setDayInterval={this.handleDayPasses}
       />
     );
   }

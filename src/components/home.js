@@ -64,9 +64,7 @@ class DinoName extends Component {
           value={this.state.text}
         />
         <Button
-          onPress={() => this.props.navigation.navigate('Game', {
-            name: this.state.text,
-          })}
+          onPress={() => this.props.onSubmit(this.state.text)}
           title="Save"
           backgroundStyle={style.buttonBackground}
           textStyle={style.buttonText}

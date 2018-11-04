@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   TouchableHighlight,
-  Alert,
   Modal, View,
   Text,
   Dimensions,
@@ -9,7 +8,6 @@ import {
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { LinearGradient } from 'expo';
 import colors from '../colors';
-import Dinosaur from '../../digi-dino';
 import style from './styles';
 import PetScreen from '../pet-screen';
 import CareIcon from '../icon';
@@ -29,40 +27,19 @@ class MainGameScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Dinosaur: new Dinosaur(props.navigation.getParam('name')),
       colors: morning,
-      modalVisible: false,
     };
 
-    const dayInterval = window.setInterval(() => {
-      try {
-        this.state.Dinosaur.dayPasses();
-      } catch (error) {
-        window.clearInterval(dayInterval);
-        error.message;
-        this.setState({
-          modalVisible: true,
-          errorMessage: error.message,
-        });
-      }
+    this.backgroundInterval = window.setInterval(() => {
       this.setState({
-        Dinosaur: this.state.Dinosaur,
         colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
-    }, 1000);
+    }, 10000);
+    props.setDayInterval();
   }
 
-
-  handlePress(action) {
-    try {
-      this.state.Dinosaur[action]();
-    } catch (error) {
-      error.message;
-      this.setState({ modalVisible: true });
-    }
-    this.setState({
-      Dinosaur: this.state.Dinosaur,
-    });
+  componentWillUnmount() {
+    window.clearInterval(this.backgroundInterval);
   }
 
   render() {
@@ -97,12 +74,12 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.fullness}
+                value={this.props.dinosaur.fullness}
               />
             </View>
             <View style={style.column}>
               <Text style={style.nameStyle}>
-                {this.state.Dinosaur.name}
+                {this.props.dinosaur.name}
               </Text>
             </View>
           </View>
@@ -116,7 +93,7 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.fitness}
+                value={this.props.dinosaur.fitness}
               />
             </View>
             <View style={style.column}>
@@ -126,7 +103,7 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.energy}
+                value={this.props.dinosaur.energy}
               />
             </View>
           </View>
@@ -140,7 +117,7 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.social}
+                value={this.props.dinosaur.social}
               />
             </View>
             <View style={style.column}>
@@ -150,7 +127,7 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.cleanliness}
+                value={this.props.dinosaur.cleanliness}
               />
             </View>
           </View>
@@ -173,17 +150,17 @@ class MainGameScreen extends Component {
             <CareIcon
               name="cutlery"
               type="font-awesome"
-              onPress={() => this.handlePress('feed')}
+              onPress={() => this.props.onPress('feed')}
             />
             <CareIcon
               name="soccer-ball-o"
               type="font-awesome"
-              onPress={() => this.handlePress('play')}
+              onPress={() => this.props.onPress('play')}
             />
             <CareIcon
               name="bed"
               type="font-awesome"
-              onPress={() => this.handlePress('bedTime')}
+              onPress={() => this.props.onPress('bedTime')}
             />
           </View>
 
@@ -192,12 +169,12 @@ class MainGameScreen extends Component {
             <CareIcon
               name="chat"
               type="entypo"
-              onPress={() => this.handlePress('socialise')}
+              onPress={() => this.props.onPress('socialise')}
             />
             <CareIcon
               name="emoticon-poop"
               type="material-community"
-              onPress={() => this.handlePress('pooperScooper')}
+              onPress={() => this.props.onPress('pooperScooper')}
             />
           </View>
           {/* Icon container3 ends */}
@@ -205,20 +182,14 @@ class MainGameScreen extends Component {
         <Modal
           animationType="slide"
           transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-          }}
+          visible={this.props.modalVisible}
         >
           <View style={style.container4}>
             <View>
-              <Text style={style.message1}>{this.state.errorMessage}</Text>
+              <Text style={style.message1}>{this.props.errorMessage}</Text>
             </View>
             <TouchableHighlight
-              onPress={() => {
-                this.setState({ modalVisible: false });
-                this.props.navigation.navigate('Home');
-              }}
+              onPress={this.props.gameEnds}
             >
               <View style={{ paddingTop: 50 }}>
                 <Text style={style.message2}>
