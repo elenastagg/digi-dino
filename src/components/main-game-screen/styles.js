@@ -3,29 +3,22 @@ import colors from '../colors';
 
 const style = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 3,
     flexDirection: 'column',
     padding: 5,
-  },
-  container2: {
-    flex: 4.5,
-    flexDirection: 'column',
-    padding: 5,
-  },
-  container3: {
-    flex: 2.5,
-    flexDirection: 'column',
-    padding: 5,
+    paddingTop: 30,
   },
   nameStyle: {
     color: colors.white,
-    fontSize: 22,
+    fontSize: 30,
     fontWeight: 'bold',
+    fontFamily: 'Chewy',
   },
   row: {
     flex: 1,
     flexDirection: 'row',
     marginLeft: 10,
+    marginTop: 10,
   },
   column: {
     flex: 1,
@@ -34,9 +27,25 @@ const style = StyleSheet.create({
   },
   actionLabel: {
     color: colors.white,
-    fontSize: 14,
+    fontSize: 18,
+    fontFamily: 'Chewy',
   },
 
+  /* Animation */
+  container2: {
+    flex: 4,
+    flexDirection: 'column',
+    paddingBottom: 30,
+    marginBottom: 20,
+  },
+
+  /* Icons */
+  container3: {
+    flex: 3,
+    flexDirection: 'column',
+    padding: 5,
+    paddingTop: 20,
+  },
   iconRow: {
     flex: 1,
     flexDirection: 'row',
@@ -44,21 +53,28 @@ const style = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  petScreenContainer: {
+
+  /* Restart game screen */
+  container4: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '50%',
+    flexDirection: 'column',
+    backgroundColor: colors.darkgreen,
+    paddingTop: 200,
   },
-  buttonBackground: {
-    backgroundColor: colors.blue,
-    width: 90,
-    marginLeft: 10,
+
+  message1: {
+    fontFamily: 'Chewy',
+    fontSize: 35,
+    color: colors.white,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
-  buttonText: {
-    color: 'white',
+  message2: {
+    fontFamily: 'Chewy',
     fontSize: 30,
+    color: colors.midgreen,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 export default style;

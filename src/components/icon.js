@@ -4,24 +4,27 @@ import { Icon } from 'react-native-elements';
 
 const CareIcon = props => (
   <Icon
-    reverse
     raised
     name={props.name}
     type={props.type}
-    color={colors.blue}
+    color={colors.midgreen}
     iconStyle={
       {
         fontSize: 36,
-        flex: 0,
-        justifyContent: 'center',
+        padding: 10,
+        opacity: 1,
       }
     }
     containerStyle={
       {
-        backgroundColor: colors.midgreen,
-        width: 63,
-        height: 63,
-        borderRadius: 600,
+        backgroundColor: colors.white,
+        width: 80,
+        height: 60,
+        borderRadius: 20,
+        opacity: 0.8,
+        flex: 0,
+        justifyContent: 'center',
+        alignContent: 'center',
       }
     }
     onPress={props.onPress}

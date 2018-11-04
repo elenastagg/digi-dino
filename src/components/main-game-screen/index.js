@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import {
+  TouchableOpacity,
+  Modal, View,
+  Text,
+  Dimensions,
+} from 'react-native';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { LinearGradient } from 'expo';
 import colors from '../colors';
-import Dinosaur from '../../digi-dino';
 import style from './styles';
 import PetScreen from '../pet-screen';
 import CareIcon from '../icon';
-// import SvgExample from '../custom-icons/custom-icons';
 
-const evening = [colors.darkblue, colors.blue, colors.darkgreen];
-const day = [colors.blue, colors.lightblue, colors.midgreen];
+// import SvgExample from '../custom-icons/custom-icons';
+// background-image: linear-gradient(to bottom, #ff7897, #ff8982, #ffa16f, #ffbb62, #ffd760);
+
+const evening = [
+  '#191970', '#003382', '#004990', '#005e9a', '#0072a1', '#4792b7', '#75b3ce', '#a1d4e6', '#fae9b9', '#78C664', '#2FAB63', '#008E63'];
+const day = [
+  '#0072a1', '#4792b7', '#75b3ce', '#a1d4e6', '#cff5ff', '#dff6ff', '#eef8ff', '#f9fbff', '#fae9b9', '#78C664', '#2FAB63', '#008E63'];
 const morning = [
-  '#FF7897', '#FF947B', '#FFB566', '#FFD760', '#fedc77', '#fde08e', '#fce5a3', '#fae9b9',
-  '#78C664', '#2FAB63', '#008E63',
+  '#FF7897', '#ff7897', '#FF947B', '#FFB566', '#FFD760', '#fedc77', '#fde08e', '#f3e7c8', '#fae9b9', '#78C664', '#2FAB63', '#008E63',
 ];
 
 const times = [morning, day, evening];
@@ -22,23 +29,19 @@ class MainGameScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Dinosaur: new Dinosaur(props.navigation.getParam('name')),
       colors: morning,
     };
-    window.setInterval(() => {
-      this.state.Dinosaur.dayPasses();
+
+    this.backgroundInterval = window.setInterval(() => {
       this.setState({
-        Dinosaur: this.state.Dinosaur,
         colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
-    }, 3000);
+    }, 500);
+    props.setDayInterval();
   }
 
-  handlePress(action) {
-    this.state.Dinosaur[action]();
-    this.setState({
-      Dinosaur: this.state.Dinosaur,
-    });
+  componentWillUnmount() {
+    window.clearInterval(this.backgroundInterval);
   }
 
   render() {
@@ -73,12 +76,12 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.fullness}
+                value={this.props.dinosaur.fullness}
               />
             </View>
             <View style={style.column}>
               <Text style={style.nameStyle}>
-                {this.state.Dinosaur.name}
+                {this.props.dinosaur.name}
               </Text>
             </View>
           </View>
@@ -92,7 +95,7 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.fitness}
+                value={this.props.dinosaur.fitness}
               />
             </View>
             <View style={style.column}>
@@ -102,7 +105,7 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.energy}
+                value={this.props.dinosaur.energy}
               />
             </View>
           </View>
@@ -116,7 +119,7 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.social}
+                value={this.props.dinosaur.social}
               />
             </View>
             <View style={style.column}>
@@ -126,20 +129,12 @@ class MainGameScreen extends Component {
               <ProgressBarAnimated
                 {...progressCustomStyle}
                 width={barWidth}
-                value={this.state.Dinosaur.cleanliness}
+                value={this.props.dinosaur.cleanliness}
               />
             </View>
           </View>
           {/* end of progress bars container 1 */}
         </View>
-
-        {/* Dinosaur container2 starts */}
-        <View style={style.container2}>
-          <View style={style.petScreenContainer}>
-            <PetScreen />
-          </View>
-        </View>
-        {/* Dinosaur container2 ends */}
 
         {/* Icon container3 starts */}
         <View style={style.container3}>
@@ -149,17 +144,17 @@ class MainGameScreen extends Component {
             <CareIcon
               name="cutlery"
               type="font-awesome"
-              onPress={() => this.handlePress('feed')}
+              onPress={() => this.props.onPress('feed')}
             />
             <CareIcon
               name="soccer-ball-o"
               type="font-awesome"
-              onPress={() => this.handlePress('play')}
+              onPress={() => this.props.onPress('play')}
             />
             <CareIcon
               name="bed"
               type="font-awesome"
-              onPress={() => this.handlePress('bedTime')}
+              onPress={() => this.props.onPress('bedTime')}
             />
           </View>
 
@@ -168,16 +163,43 @@ class MainGameScreen extends Component {
             <CareIcon
               name="chat"
               type="entypo"
-              onPress={() => this.handlePress('socialise')}
+              onPress={() => this.props.onPress('socialise')}
             />
             <CareIcon
-              name="food"
+              name="emoticon-poop"
               type="material-community"
-              onPress={() => this.handlePress('pooperScooper')}
+              onPress={() => this.props.onPress('pooperScooper')}
             />
           </View>
           {/* Icon container3 ends */}
         </View>
+
+        {/* Dinosaur container2 starts */}
+        <View style={style.container2}>
+          <PetScreen />
+        </View>
+        {/* Dinosaur container2 ends */}
+
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.props.modalVisible}
+        >
+          <View style={style.container4}>
+            <View>
+              <Text style={style.message1}>{this.props.errorMessage}</Text>
+            </View>
+            <TouchableOpacity
+              onPress={this.props.gameEnds}
+            >
+              <View style={{ paddingTop: 50 }}>
+                <Text style={style.message2}>
+                  Start New Game
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </Modal>
       </View>
     );
   }
