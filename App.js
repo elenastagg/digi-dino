@@ -12,6 +12,7 @@ class App extends React.Component {
     Dinosaur: null,
     modalVisible: false,
     errorMessage: '',
+    currentAction: 'normalState',
   };
 
   handleNameSubmit = (name) => {
@@ -25,6 +26,7 @@ class App extends React.Component {
       this.state.Dinosaur[action]();
       this.setState({
         Dinosaur: this.state.Dinosaur,
+        currentAction: action,
       });
     } catch (error) {
       window.clearInterval(this.dayInterval);
@@ -47,7 +49,7 @@ class App extends React.Component {
   handleDayPasses = () => {
     this.dayInterval = window.setInterval(() => {
       this.handlePress('dayPasses');
-    }, 2000);
+    }, 300000);
   };
 
   render() {
@@ -77,6 +79,7 @@ class App extends React.Component {
         errorMessage={this.state.errorMessage}
         gameEnds={this.handleGameEnds}
         setDayInterval={this.handleDayPasses}
+        currentAction={this.state.currentAction}
       />
     );
   }

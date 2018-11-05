@@ -22,18 +22,22 @@ class PetScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animationName: 'normalState',
-      duration: 2000,
+     
     };
   }
 
   render() {
     return (
       <View style={styles.petScreen}>
-        <Animation animationName={this.state.animationName} duration={this.state.duration} />
+        <Animation
+          animationName={this.props.currentAction}
+        />
       </View>
     );
   }
-};
+
+  componentDidUpdate() {
+  }
+}
 
 export default PetScreen;

@@ -36,7 +36,7 @@ class MainGameScreen extends Component {
       this.setState({
         colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
-    }, 500);
+    }, 20000000);
     props.setDayInterval();
   }
 
@@ -51,6 +51,36 @@ class MainGameScreen extends Component {
       borderRadius: 10,
       borderColor: colors.white,
     };
+    let matchedAnimation = this.props.currentAction;
+    console.log('action: ', matchedAnimation);
+    
+    switch (matchedAnimation) {
+      case 'play':
+        matchedAnimation = 'play';
+        console.log('play case triggered');
+        break;
+      case 'feed':
+        matchedAnimation = 'eating';
+        console.log('eating case triggered');
+        break;
+      case 'bedTime':
+        matchedAnimation = 'sleep';
+        console.log('sleep case triggered');
+        break;
+      case 'socialise':
+        matchedAnimation = 'talking';
+        console.log('talking case triggered');
+        break;
+      case 'pooperScooper':
+        matchedAnimation = 'poopScoop';
+        console.log('poopScoop case triggered');
+        break;
+      default:
+        console.log('No match');
+        console.log('normalState case triggered');
+        matchedAnimation = 'normalState';
+    }
+
     return (
       <View style={{ flex: 1 }}>
         <LinearGradient
@@ -176,7 +206,7 @@ class MainGameScreen extends Component {
 
         {/* Dinosaur container2 starts */}
         <View style={style.container2}>
-          <PetScreen />
+          <PetScreen currentAction={matchedAnimation} />
         </View>
         {/* Dinosaur container2 ends */}
 
