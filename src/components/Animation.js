@@ -23,6 +23,7 @@ class Animation extends Component {
       numOfLoops: this.props.numOfLoops,
       infiniteLoop: this.props.infiniteLoop,
     };
+  
     this.handleAnimation = this.handleAnimation.bind(this);
   }
 
@@ -38,14 +39,14 @@ class Animation extends Component {
 
     const nextFrame = () => {
       if ((this.state.infiniteLoop === false) && (loopIndex === 0)) {
-        console.log('reached stop if');
+        // console.log('reached stop if');
         stopAnimation();
       } else if ((frameIndex + 1) > animationFrames.length) {
         loopIndex = loopIndex - 1;
-        console.log('loopIndex after decrement: ', loopIndex);
+        // console.log('loopIndex after decrement: ', loopIndex);
         frameIndex = 0;
       } else {
-        console.log(animationFrames[frameIndex], frameIndex);
+        // console.log(animationFrames[frameIndex], frameIndex);
         this.setState({ currentFrame: animationFrames[frameIndex].frame });
         frameIndex = frameIndex + 1;
       }
@@ -61,6 +62,7 @@ class Animation extends Component {
       
       console.log('Animation stopped');
       
+      /*
       loopIndex = this.state.numOfLoops;
       console.log('stop loopIndex: ', loopIndex);
       frameIndex = 0;
@@ -81,6 +83,9 @@ class Animation extends Component {
   }
 
   render() {
+    console.log('animation ca: ', this.props.currentAction);
+    console.log('ANIMATION NAME: ', this.state.animationName);
+ 
     const currentFrames = defineFrames[this.props.animationName].frames;
     const myFrame = currentFrames.find(f => {
       return f.frame === this.state.currentFrame;

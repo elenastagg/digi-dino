@@ -26,19 +26,40 @@ class PetScreen extends Component {
       numOfloops: 2,
       infiniteLoop: true,
     };
-    this.triggerDefaultAnimation = this.triggerDefaultAnimation.bind(this);
+    this.matchAction = this.matchAction.bind(this);
   }
 
-  triggerDefaultAnimation() {
-    console.log('default animation triggered');
-    // console.log('THIS: ', that);
-    // this.setState({ animationName: 'normalState' });
+  matchAction() {
+    const actionToMatch = this.props.currentAction;
+    let matchedAnimation = null;
+    switch (actionToMatch) {
+      case 'play':
+        matchedAnimation = 'play';
+        break;
+      case 'feed':
+        matchedAnimation = 'eating';
+        break;
+      case 'bedTime':
+        matchedAnimation = 'sleep';
+        break;
+      case 'socialise':
+        matchedAnimation = 'talking';
+        break;
+      case 'pooperScooper':
+        matchedAnimation = 'poopScoop';
+        break;
+      default:
+        console.log('No match');
+        matchedAnimation = 'normalState';
+    }
+    console.log('matchedAnimation: ', matchedAnimation);
   }
 
   render() {
+    
     return (
       <View style={styles.petScreen}>
-        <Animation animationName={this.state.animationName} numOfLoops={this.state.numOfloops} infiniteLoop={this.state.infiniteLoop} />
+        <Animation animationName={this.state.animationName} numOfLoops={this.state.numOfloops} infiniteLoop={this.state.infiniteLoop} currentAction={this.props.currentAction} />
       </View>
     );
   }

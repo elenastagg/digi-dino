@@ -30,6 +30,8 @@ class MainGameScreen extends Component {
     super(props);
     this.state = {
       colors: morning,
+      // this doesn't update when app.js updates
+      //currentAction: this.props.currentAction,
     };
 
     this.backgroundInterval = window.setInterval(() => {
@@ -45,6 +47,7 @@ class MainGameScreen extends Component {
   }
 
   render() {
+    console.log('Main screen action: ', this.props.currentAction);
     const barWidth = (Dimensions.get('screen').width / 2) - 30;
     const progressCustomStyle = {
       backgroundColor: colors.white,
@@ -176,7 +179,7 @@ class MainGameScreen extends Component {
 
         {/* Dinosaur container2 starts */}
         <View style={style.container2}>
-          <PetScreen />
+          <PetScreen currentAction={this.props.currentAction} />
         </View>
         {/* Dinosaur container2 ends */}
 
