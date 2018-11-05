@@ -30,15 +30,13 @@ class MainGameScreen extends Component {
     super(props);
     this.state = {
       colors: morning,
-      // this doesn't update when app.js updates
-      //currentAction: this.props.currentAction,
     };
 
     this.backgroundInterval = window.setInterval(() => {
       this.setState({
         colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
-    }, 10000);
+    }, 20000000);
     props.setDayInterval();
   }
 
@@ -47,7 +45,6 @@ class MainGameScreen extends Component {
   }
 
   render() {
-    console.log('Main screen ACTION: ', this.props.currentAction);
     const barWidth = (Dimensions.get('screen').width / 2) - 30;
     const progressCustomStyle = {
       backgroundColor: colors.white,
@@ -55,6 +52,7 @@ class MainGameScreen extends Component {
       borderColor: colors.white,
     };
     let matchedAnimation = this.props.currentAction;
+    console.log('action: ', matchedAnimation);
     
     switch (matchedAnimation) {
       case 'play':

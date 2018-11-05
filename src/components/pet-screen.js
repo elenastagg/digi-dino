@@ -22,20 +22,21 @@ class PetScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numOfloops: 2,
-      infiniteLoop: true,
+     
     };
   }
 
   render() {
-    //this.matchAction();
-    console.log('current Action: ', this.props.currentAction);
-    console.log('matchedAnimation AnimationName: ', this.state.animationName);
     return (
       <View style={styles.petScreen}>
-        <Animation animationName={this.props.currentAction} numOfLoops={this.state.numOfloops} infiniteLoop={this.state.infiniteLoop} />
+        <Animation
+          animationName={this.props.currentAction}
+        />
       </View>
     );
+  }
+
+  componentDidUpdate() {
   }
 }
 

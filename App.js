@@ -53,7 +53,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log('app state: ', this.state.currentAction);
     /* Waits for font to load before showing the home screen */
     if (this.state.isLoading) {
       return (
