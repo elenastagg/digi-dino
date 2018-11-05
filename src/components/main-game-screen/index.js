@@ -36,7 +36,7 @@ class MainGameScreen extends Component {
       this.setState({
         colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
-    }, 20000000);
+    }, 8000);
     props.setDayInterval();
   }
 
@@ -53,7 +53,7 @@ class MainGameScreen extends Component {
     };
     let matchedAnimation = this.props.currentAction;
     console.log('action: ', matchedAnimation);
-    
+
     switch (matchedAnimation) {
       case 'play':
         matchedAnimation = 'play';

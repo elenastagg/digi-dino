@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import defineFrames from './define-frames';
-import PetScreen from './pet-screen';
+// import PetScreen from './pet-screen';
 
 // Styles
 
@@ -34,12 +34,12 @@ class Animation extends Component {
   }
 
   handleAnimation(stopPrevAnimation) {
-   
+
     console.log('handle animation called,');
     console.log('loopIndex at beginning: ', this.state.loopIndex);
     // Bring back the frames array for the elevant animation
     const animationFrames = defineFrames[this.state.animationName].frames;
-  
+
     // Records index of currentFrame when looping through animationFrames array
     let frameIndex = this.state.frameIndex;
 
@@ -49,7 +49,7 @@ class Animation extends Component {
         console.log('reached stop if');
         stopAnimation();
         playDefault();
-    
+
       } else if ((frameIndex + 1) > animationFrames.length) {
         this.setState({
           loopIndex: this.state.loopIndex - 1,
@@ -100,7 +100,7 @@ class Animation extends Component {
   }
 
   render() {
-    
+
    // console.log('Animation animationName: ', this.props.animationName);
     const currentFrames = defineFrames[this.props.animationName].frames;
     const myFrame = currentFrames.find(f => {
@@ -124,7 +124,7 @@ class Animation extends Component {
   }
 
   componentDidUpdate() {
-   
+
   }
 
   componentWillReceiveProps() {
