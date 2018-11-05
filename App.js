@@ -12,7 +12,7 @@ class App extends React.Component {
     Dinosaur: null,
     modalVisible: false,
     errorMessage: '',
-    currentAction: 'test',
+    currentAction: 'normalState',
   };
 
   handleNameSubmit = (name) => {
@@ -49,11 +49,11 @@ class App extends React.Component {
   handleDayPasses = () => {
     this.dayInterval = window.setInterval(() => {
       this.handlePress('dayPasses');
-    }, 2000);
+    }, 300000);
   };
 
   render() {
-    console.log('app state: ',this.state.currentAction);
+    console.log('app state: ', this.state.currentAction);
     /* Waits for font to load before showing the home screen */
     if (this.state.isLoading) {
       return (

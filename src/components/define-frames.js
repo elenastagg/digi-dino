@@ -57,7 +57,7 @@ const defineFrames = {
             },
         ],
     },
-    poopScroop: {
+    poopScoop: {
         frames: [
             {
                 frame: 1,

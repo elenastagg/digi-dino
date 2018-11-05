@@ -83,8 +83,8 @@ class Animation extends Component {
   }
 
   render() {
-    console.log('animation ca: ', this.props.currentAction);
-    console.log('ANIMATION NAME: ', this.state.animationName);
+    // console.log('animation ca: ', this.props.currentAction);
+    // console.log('ANIMATION NAME: ', this.state.animationName);
  
     const currentFrames = defineFrames[this.props.animationName].frames;
     const myFrame = currentFrames.find(f => {

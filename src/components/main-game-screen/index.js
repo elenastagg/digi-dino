@@ -38,7 +38,7 @@ class MainGameScreen extends Component {
       this.setState({
         colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
-    }, 500);
+    }, 10000);
     props.setDayInterval();
   }
 
@@ -47,13 +47,42 @@ class MainGameScreen extends Component {
   }
 
   render() {
-    console.log('Main screen action: ', this.props.currentAction);
+    console.log('Main screen ACTION: ', this.props.currentAction);
     const barWidth = (Dimensions.get('screen').width / 2) - 30;
     const progressCustomStyle = {
       backgroundColor: colors.white,
       borderRadius: 10,
       borderColor: colors.white,
     };
+    let matchedAnimation = this.props.currentAction;
+    
+    switch (matchedAnimation) {
+      case 'play':
+        matchedAnimation = 'play';
+        console.log('play case triggered');
+        break;
+      case 'feed':
+        matchedAnimation = 'eating';
+        console.log('eating case triggered');
+        break;
+      case 'bedTime':
+        matchedAnimation = 'sleep';
+        console.log('sleep case triggered');
+        break;
+      case 'socialise':
+        matchedAnimation = 'talking';
+        console.log('talking case triggered');
+        break;
+      case 'pooperScooper':
+        matchedAnimation = 'poopScoop';
+        console.log('poopScoop case triggered');
+        break;
+      default:
+        console.log('No match');
+        console.log('normalState case triggered');
+        matchedAnimation = 'normalState';
+    }
+
     return (
       <View style={{ flex: 1 }}>
         <LinearGradient
@@ -179,7 +208,7 @@ class MainGameScreen extends Component {
 
         {/* Dinosaur container2 starts */}
         <View style={style.container2}>
-          <PetScreen currentAction={this.props.currentAction} />
+          <PetScreen currentAction={matchedAnimation} />
         </View>
         {/* Dinosaur container2 ends */}
 

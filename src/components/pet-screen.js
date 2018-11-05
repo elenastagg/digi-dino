@@ -22,44 +22,18 @@ class PetScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animationName: 'normalState',
       numOfloops: 2,
       infiniteLoop: true,
     };
-    this.matchAction = this.matchAction.bind(this);
-  }
-
-  matchAction() {
-    const actionToMatch = this.props.currentAction;
-    let matchedAnimation = null;
-    switch (actionToMatch) {
-      case 'play':
-        matchedAnimation = 'play';
-        break;
-      case 'feed':
-        matchedAnimation = 'eating';
-        break;
-      case 'bedTime':
-        matchedAnimation = 'sleep';
-        break;
-      case 'socialise':
-        matchedAnimation = 'talking';
-        break;
-      case 'pooperScooper':
-        matchedAnimation = 'poopScoop';
-        break;
-      default:
-        console.log('No match');
-        matchedAnimation = 'normalState';
-    }
-    console.log('matchedAnimation: ', matchedAnimation);
   }
 
   render() {
-    
+    //this.matchAction();
+    console.log('current Action: ', this.props.currentAction);
+    console.log('matchedAnimation AnimationName: ', this.state.animationName);
     return (
       <View style={styles.petScreen}>
-        <Animation animationName={this.state.animationName} numOfLoops={this.state.numOfloops} infiniteLoop={this.state.infiniteLoop} currentAction={this.props.currentAction} />
+        <Animation animationName={this.props.currentAction} numOfLoops={this.state.numOfloops} infiniteLoop={this.state.infiniteLoop} />
       </View>
     );
   }
