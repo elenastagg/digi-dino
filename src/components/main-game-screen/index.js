@@ -36,7 +36,7 @@ class MainGameScreen extends Component {
       this.setState({
         colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
-    }, 4000);
+    }, 3000);
     props.setDayInterval();
   }
 

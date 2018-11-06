@@ -27,6 +27,7 @@ class Animation extends Component {
       actionAnimation: false,
     };
     this.handleAnimation = this.handleAnimation.bind(this);
+    this.interval = undefined;
   }
 
   handleAnimation() {
@@ -77,11 +78,16 @@ class Animation extends Component {
     const nextFrameTrigger = setInterval(() => {
       nextFrame();
     }, 500);
+    this.interval = nextFrameTrigger;
 
     const stopAnimation = () => {
       clearInterval(nextFrameTrigger);
       console.log('animation has stopped');
     };
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
