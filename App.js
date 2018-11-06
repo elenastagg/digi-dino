@@ -49,7 +49,7 @@ class App extends React.Component {
   handleDayPasses = () => {
     this.dayInterval = window.setInterval(() => {
       this.handlePress('dayPasses');
-    }, 300000);
+    }, 12000);
   };
 
   render() {

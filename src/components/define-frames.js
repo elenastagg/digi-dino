@@ -101,7 +101,7 @@ const defineFrames = {
         frames: [
             {
                 frame: 1,
-                imgSrc: require('../../assets/animations/sleep/sleep2.png'),
+                imgSrc: require('../../assets/animations/sleep/sleep1.png'),
             },
             {
                 frame: 2,
