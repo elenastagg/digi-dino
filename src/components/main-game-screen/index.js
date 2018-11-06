@@ -9,11 +9,11 @@ import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { LinearGradient } from 'expo';
 import colors from '../colors';
 import style from './styles';
-import PetScreen from '../pet-screen';
+// import PetScreen from '../pet-screen';
+import HappyAnimation from '../animation';
 import CareIcon from '../icon';
 
 // import SvgExample from '../custom-icons/custom-icons';
-// background-image: linear-gradient(to bottom, #ff7897, #ff8982, #ffa16f, #ffbb62, #ffd760);
 
 const evening = [
   '#191970', '#003382', '#004990', '#005e9a', '#0072a1', '#4792b7', '#75b3ce', '#a1d4e6', '#fae9b9', '#78C664', '#2FAB63', '#008E63'];
@@ -36,7 +36,7 @@ class MainGameScreen extends Component {
       this.setState({
         colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
       });
-    }, 500);
+    }, 5000);
     props.setDayInterval();
   }
 
@@ -174,9 +174,12 @@ class MainGameScreen extends Component {
           {/* Icon container3 ends */}
         </View>
 
-        {/* Dinosaur container2 starts */}
+        {/* Dinosaur container2 starts
         <View style={style.container2}>
           <PetScreen />
+        </View> */}
+        <View style={style.container2}>
+          <HappyAnimation />
         </View>
         {/* Dinosaur container2 ends */}
 
