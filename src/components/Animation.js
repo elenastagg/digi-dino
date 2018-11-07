@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import defineFrames from './define-frames';
-import PetScreen from './pet-screen';
+// import PetScreen from './pet-screen';
 
 // Styles
 
