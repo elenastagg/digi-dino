@@ -20,44 +20,54 @@ class Animation extends Component {
     this.state = {
       currentFrame: 1,
       animationName: this.props.animationName,
-      infiniteLoop: true,
+      animationFrames: defineFrames[this.props.animationName].frames,
       loopIndex: 2,
       frameIndex: 0,
+      returnToDefault: false,
+      actionAnimation: false,
     };
-
-    const clearAnimationInterval = (intervalName) => {
-      clearInterval(intervalName);
-    };
-
     this.handleAnimation = this.handleAnimation.bind(this);
-    this.stopAnimation = this.handleAnimation.bind(this);
+    this.interval = undefined;
   }
 
-  handleAnimation(stopPrevAnimation) {
-
-    console.log('handle animation called,');
-    console.log('loopIndex at beginning: ', this.state.loopIndex);
-    // Bring back the frames array for the elevant animation
-    const animationFrames = defineFrames[this.state.animationName].frames;
-
+  handleAnimation() {
     // Records index of currentFrame when looping through animationFrames array
     let frameIndex = this.state.frameIndex;
 
     const nextFrame = () => {
-      console.log('next frame has been called');
-      if ((this.state.infiniteLoop === false) && (this.state.loopIndex === 0)) {
-        console.log('reached stop if');
+      if (this.state.returnToDefault === true) {
         stopAnimation();
-        playDefault();
+        this.setState({
+          returnToDefault: false,
+          animationName: 'normalState',
+          animationFrames: defineFrames.normalState.frames,
+          currentFrame: 1,
+          loopIndex: 2,
+          frameIndex: 0,
+          actionAnimation: false,
+        });
+        this.handleAnimation();
 
-      } else if ((frameIndex + 1) > animationFrames.length) {
+      } else if ((this.state.returnToDefault === false) && (this.state.actionAnimation === false) && (this.state.loopIndex === 0)) {
+        // console.log('reached stop if');
+        this.setState({
+          loopIndex: 2,
+          frameIndex: 0,
+        });
+      } else if ((this.state.returnToDefault === false) && ((this.state.actionAnimation === true) && (this.state.loopIndex === 0))) {
+        // console.log('stopped because actionAnimation ended');
+        this.setState({
+          returnToDefault: true,
+        });
+        stopAnimation();
+        this.handleAnimation();
+      } else if ((frameIndex + 1) > this.state.animationFrames.length) {
         this.setState({
           loopIndex: this.state.loopIndex - 1,
         });
         frameIndex = 0;
       } else {
-        console.log(animationFrames[frameIndex], frameIndex, 'loopindex ', this.state.loopIndex, ' loopStatus ', this.state.infiniteLoop);
-        this.setState({ currentFrame: animationFrames[frameIndex].frame });
+        this.setState({ currentFrame: this.state.animationFrames[frameIndex].frame });
         frameIndex = frameIndex + 1;
         this.setState({
           frameIndex: frameIndex,
@@ -67,48 +77,24 @@ class Animation extends Component {
 
     const nextFrameTrigger = setInterval(() => {
       nextFrame();
-    }, 1000);
+    }, 500);
+    this.interval = nextFrameTrigger;
 
     const stopAnimation = () => {
-      console.log('animation has stopped');
       clearInterval(nextFrameTrigger);
-    };
-
-    if (stopPrevAnimation === true) {
-      stopAnimation();
-      this.setState({
-        loopIndex: 2,
-        infiniteLoop: false,
-        frameIndex: 0,
-      });
-    }
-
-    const playDefault = () => {
-      console.log('playDefault has been called');
-      this.playDefault();
+      console.log('animation has stopped');
     };
   }
 
-  playDefault() {
-    this.setState({
-      loopIndex: 2,
-      infiniteLoop: false,
-      frameIndex: 0,
-      animationName: 'eating',
-    });
-    console.log(this.state);
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
-
-   // console.log('Animation animationName: ', this.props.animationName);
-    const currentFrames = defineFrames[this.props.animationName].frames;
+    const currentFrames = defineFrames[this.state.animationName].frames;
     const myFrame = currentFrames.find(f => {
       return f.frame === this.state.currentFrame;
     });
-
-    // console.log('currentFrames: ', currentFrames);
-    // console.log('myFrame: ', myFrame);
     return (
       <View>
         <Image
@@ -123,14 +109,18 @@ class Animation extends Component {
     this.handleAnimation();
   }
 
-  componentDidUpdate() {
-
-  }
-
-  componentWillReceiveProps() {
-    console.log('WILL RECEIVE PROPS');
-    this.handleAnimation(true);
-    //this.startAnimation();
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.animationName !== this.state.animationName) {
+      this.setState({
+        animationName: nextProps.animationName,
+        animationFrames: defineFrames[nextProps.animationName].frames,
+        returnToDefault: false,
+        actionAnimation: true,
+        currentFrame: 1,
+        loopIndex: 2,
+        frameIndex: 0,
+      });
+    }
   }
 }
 

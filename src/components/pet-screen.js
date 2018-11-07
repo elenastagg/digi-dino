@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     height: gameScreenWidth,
     width: gameScreenWidth,
+    alignSelf: 'center',
   },
 });
 
