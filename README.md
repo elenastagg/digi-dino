@@ -17,25 +17,11 @@ in your digi-dino dying before its time.
 * Get your dino to chat with friends to increase its social level.
 * Scoop the poop to increase its cleanliness.
 
-#Getting Started
-
-#Prerequisites
-
-#Installing
-
-#Running the tests
-
-#Break down into end to end tests
-
-#Deployment
-
 #Authors
 
 Amy Hart
 
 Elena Stagg
-
-Stephen Royle
 
 #Acknowledgments
 
