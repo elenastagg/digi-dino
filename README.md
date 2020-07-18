@@ -1,5 +1,7 @@
 # Digi-Dino
 
+A demo of the app can be watched here: https://youtu.be/T7HiXr8PJTY 
+
 This is a virtual pet game that allows you to keep your dinosaur happy and healthy throughout their life-span. Neglet will result
 in your digi-dino dying before its time.
 
