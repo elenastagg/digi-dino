@@ -9,8 +9,7 @@ const CareIcon = (props) => (
     type={props.type}
     color={colors.midgreen}
     iconStyle={{
-      fontSize: 36,
-      padding: 10,
+      fontSize: 30,
       opacity: 1,
     }}
     containerStyle={{
@@ -18,10 +17,11 @@ const CareIcon = (props) => (
       width: 80,
       height: 60,
       borderRadius: 20,
-      opacity: 0.8,
-      flex: 0,
       justifyContent: "center",
       alignContent: "center",
+      padding: 15,
+      opacity: 0.8,
+      flex: 0,
     }}
     onPress={props.onPress}
   />
