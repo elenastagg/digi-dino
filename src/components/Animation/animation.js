@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
-import defineFrames from './define-frames';
-// import PetScreen from './pet-screen';
+import React, { Component } from "react";
+import { View, Image, StyleSheet } from "react-native";
+import defineFrames from "./define-frames";
 
 // Styles
 
 const styles = StyleSheet.create({
   petScreenImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain',
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
   },
 });
 
@@ -39,7 +38,7 @@ class Animation extends Component {
         stopAnimation();
         this.setState({
           returnToDefault: false,
-          animationName: 'normalState',
+          animationName: "normalState",
           animationFrames: defineFrames.normalState.frames,
           currentFrame: 1,
           loopIndex: 2,
@@ -47,27 +46,36 @@ class Animation extends Component {
           actionAnimation: false,
         });
         this.handleAnimation();
-
-      } else if ((this.state.returnToDefault === false) && (this.state.actionAnimation === false) && (this.state.loopIndex === 0)) {
+      } else if (
+        this.state.returnToDefault === false &&
+        this.state.actionAnimation === false &&
+        this.state.loopIndex === 0
+      ) {
         // console.log('reached stop if');
         this.setState({
           loopIndex: 2,
           frameIndex: 0,
         });
-      } else if ((this.state.returnToDefault === false) && ((this.state.actionAnimation === true) && (this.state.loopIndex === 0))) {
+      } else if (
+        this.state.returnToDefault === false &&
+        this.state.actionAnimation === true &&
+        this.state.loopIndex === 0
+      ) {
         // console.log('stopped because actionAnimation ended');
         this.setState({
           returnToDefault: true,
         });
         stopAnimation();
         this.handleAnimation();
-      } else if ((frameIndex + 1) > this.state.animationFrames.length) {
+      } else if (frameIndex + 1 > this.state.animationFrames.length) {
         this.setState({
           loopIndex: this.state.loopIndex - 1,
         });
         frameIndex = 0;
       } else {
-        this.setState({ currentFrame: this.state.animationFrames[frameIndex].frame });
+        this.setState({
+          currentFrame: this.state.animationFrames[frameIndex].frame,
+        });
         frameIndex = frameIndex + 1;
         this.setState({
           frameIndex: frameIndex,
@@ -82,7 +90,7 @@ class Animation extends Component {
 
     const stopAnimation = () => {
       clearInterval(nextFrameTrigger);
-      console.log('animation has stopped');
+      console.log("animation has stopped");
     };
   }
 
@@ -92,15 +100,12 @@ class Animation extends Component {
 
   render() {
     const currentFrames = defineFrames[this.state.animationName].frames;
-    const myFrame = currentFrames.find(f => {
+    const myFrame = currentFrames.find((f) => {
       return f.frame === this.state.currentFrame;
     });
     return (
       <View>
-        <Image
-          source={myFrame.imgSrc}
-          style={styles.petScreenImage}
-        />
+        <Image source={myFrame.imgSrc} style={styles.petScreenImage} />
       </View>
     );
   }
@@ -109,7 +114,7 @@ class Animation extends Component {
     this.handleAnimation();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.animationName !== this.state.animationName) {
       this.setState({
         animationName: nextProps.animationName,

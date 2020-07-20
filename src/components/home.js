@@ -1,27 +1,22 @@
-import React, { Component } from 'react';
-import {
-  TextInput,
-  View,
-  StyleSheet,
-  Text,
-} from 'react-native';
-import Button from './button';
-import colors from './colors';
+import React, { Component } from "react";
+import { TextInput, View, StyleSheet, Text } from "react-native";
+import Button from "./styles/button";
+import { colors } from "./styles/colors";
 
 const style = StyleSheet.create({
   view: {
-    width: '100%',
+    width: "100%",
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: colors.darkgreen,
   },
   input: {
     color: colors.white,
     fontSize: 30,
     margin: 10,
-    fontFamily: 'Chewy',
-    textAlign: 'center',
+    fontFamily: "Chewy",
+    textAlign: "center",
   },
   buttonBackground: {
     backgroundColor: colors.midgreen,
@@ -29,16 +24,16 @@ const style = StyleSheet.create({
     marginLeft: 10,
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 30,
-    fontFamily: 'Chewy',
+    fontFamily: "Chewy",
   },
 });
 
 class DinoName extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: '' };
+    this.state = { text: "" };
   }
 
   handleTextChange(text) {
@@ -50,17 +45,13 @@ class DinoName extends Component {
   render() {
     return (
       <View style={style.view}>
-        <Text style={style.input}>
-          Welcome to Digi Dino!
-        </Text>
-        <Text style={style.input}>
-          Please give your dinosaur a name below
-        </Text>
+        <Text style={style.input}>Welcome to Digi Dino!</Text>
+        <Text style={style.input}>Please give your dinosaur a name below</Text>
         <TextInput
           style={style.input}
           placeholder="TYPE NAME HERE"
           placeholderTextColor={colors.midgreen}
-          onChangeText={text => this.handleTextChange(text)}
+          onChangeText={(text) => this.handleTextChange(text)}
           value={this.state.text}
         />
         <Button

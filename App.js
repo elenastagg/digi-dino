@@ -1,18 +1,19 @@
-import React from 'react';
-import DinoName from './src/components/home';
-import MainGameScreen from './src/components/main-game-screen';
-import { Font, AppLoading } from 'expo';
-import Dinosaur from './src/digi-dino';
+import React from "react";
+import DinoName from "./src/components/home";
+import MainGameScreen from "./src/components/main-game-screen";
+import { AppLoading } from "expo";
+import * as Font from "expo-font";
+import Dinosaur from "./src/digi-dino";
 
-const Chewy = require('./assets/fonts/Chewy-Regular.ttf');
+const Chewy = require("./src/assets/fonts/Chewy-Regular.ttf");
 
 class App extends React.Component {
   state = {
     isLoading: true,
     Dinosaur: null,
     modalVisible: false,
-    errorMessage: '',
-    currentAction: 'normalState',
+    errorMessage: "",
+    currentAction: "normalState",
   };
 
   handleNameSubmit = (name) => {
@@ -42,14 +43,14 @@ class App extends React.Component {
     this.setState({
       Dinosaur: null,
       modalVisible: false,
-      errorMessage: '',
+      errorMessage: "",
     });
   };
 
   handleDayPasses = () => {
     this.dayInterval = window.setInterval(() => {
-      this.handlePress('dayPasses');
-    }, 9000);
+      this.handlePress("dayPasses");
+    }, 30000);
   };
 
   render() {
@@ -65,11 +66,7 @@ class App extends React.Component {
 
     /* if dinosaur is dead (null ) show the home screen */
     if (this.state.Dinosaur === null) {
-      return (
-        <DinoName
-          onSubmit={this.handleNameSubmit}
-        />
-      );
+      return <DinoName onSubmit={this.handleNameSubmit} />;
     }
     return (
       <MainGameScreen
@@ -86,3 +83,4 @@ class App extends React.Component {
 }
 
 export default App;
+// registerRootComponent(App);
