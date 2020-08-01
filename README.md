@@ -22,10 +22,8 @@ This is a virtual pet game that allows you to keep your dinosaur happy and healt
 # Features of your dinosaur
 
 - Has a name
-- They get older
-- When your dino reaches 100 years old, it will die and the game restarts
-
 - As time passes, the dino's life-levels drop: it gets hungrier, less fit, less energy, lonely & dirty, if any reach 0, your dino will die an early death.
+- The game restarts
 
 - Play with your dino to increase its fitness.
 - Feed your dino to increase its fullness.
