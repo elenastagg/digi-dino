@@ -1,5 +1,5 @@
 import React from "react";
-import DinoName from "./src/components/home";
+import DinoName from "./src/components/dino-name";
 import MainGameScreen from "./src/components/main-game-screen";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
@@ -48,9 +48,7 @@ class App extends React.Component {
   };
 
   handleDayPasses = () => {
-    this.dayInterval = window.setInterval(() => {
-      this.handlePress("dayPasses");
-    }, 30000);
+    this.handlePress("dayPasses");
   };
 
   render() {
@@ -68,14 +66,15 @@ class App extends React.Component {
     if (this.state.Dinosaur === null) {
       return <DinoName onSubmit={this.handleNameSubmit} />;
     }
+
     return (
       <MainGameScreen
         dinosaur={this.state.Dinosaur}
         onPress={this.handlePress}
         modalVisible={this.state.modalVisible}
         errorMessage={this.state.errorMessage}
-        gameEnds={this.handleGameEnds}
-        setDayInterval={this.handleDayPasses}
+        onGameEnds={this.handleGameEnds}
+        onNewDay={this.handleDayPasses}
         currentAction={this.state.currentAction}
       />
     );
@@ -83,4 +82,3 @@ class App extends React.Component {
 }
 
 export default App;
-// registerRootComponent(App);

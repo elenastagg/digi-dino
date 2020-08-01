@@ -51,7 +51,6 @@ class Animation extends Component {
         this.state.actionAnimation === false &&
         this.state.loopIndex === 0
       ) {
-        // console.log('reached stop if');
         this.setState({
           loopIndex: 2,
           frameIndex: 0,
@@ -61,7 +60,6 @@ class Animation extends Component {
         this.state.actionAnimation === true &&
         this.state.loopIndex === 0
       ) {
-        // console.log('stopped because actionAnimation ended');
         this.setState({
           returnToDefault: true,
         });
@@ -90,7 +88,6 @@ class Animation extends Component {
 
     const stopAnimation = () => {
       clearInterval(nextFrameTrigger);
-      console.log("animation has stopped");
     };
   }
 

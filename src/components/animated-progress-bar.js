@@ -61,7 +61,7 @@ class ProgressBar extends React.Component {
       easing: Easing[this.props.barEasing],
       toValue: toValue > 0 ? toValue : 0,
       duration: this.props.barAnimationDuration,
-      useNativeDriver: false,
+      useNativeDriver: false, // Added new parameter
     }).start();
   }
 
@@ -69,7 +69,7 @@ class ProgressBar extends React.Component {
     Animated.timing(this.backgroundAnimation, {
       toValue: 1,
       duration: this.props.backgroundAnimationDuration,
-      useNativeDriver: false,
+      useNativeDriver: false, // Added new parameter
     }).start();
   }
 

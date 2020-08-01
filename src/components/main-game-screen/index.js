@@ -7,26 +7,59 @@ import style from "../styles/layout";
 import PetScreen from "../Animation/pet-screen";
 import CareIcon from "../styles/icon";
 
-const times = [morning, day, evening];
-
 class MainGameScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      colors: morning,
+      colors: this.getBackground(new Date().getHours()),
     };
 
     this.backgroundInterval = window.setInterval(() => {
-      this.setState({
-        colors: times[(times.indexOf(this.state.colors) + 1) % times.length],
-      });
-    }, 10000);
+      const hour = new Date().getHours();
 
-    props.setDayInterval();
+      if (hour === 0) {
+        this.props.onNewDay();
+      }
+
+      this.setState({
+        colors: this.getBackground(hour),
+      });
+    }, 1000 * 60 * 60);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.backgroundInterval);
+  }
+
+  getBackground(hour) {
+    if (hour >= 0 && hour < 7) {
+      return evening;
+    }
+    if (hour >= 7 && hour < 13) {
+      return morning;
+    }
+    if (hour >= 13 && hour < 19) {
+      return day;
+    }
+    return evening;
+  }
+
+  getAnimationName() {
+    // Gets animation name based on button(action) pressed
+    switch (this.props.currentAction) {
+      case "play":
+        return "play";
+      case "feed":
+        return "eating";
+      case "bedTime":
+        return "sleep";
+      case "socialise":
+        return "talking";
+      case "pooperScooper":
+        return "poopScoop";
+      default:
+        return "normalState";
+    }
   }
 
   render() {
@@ -37,34 +70,6 @@ class MainGameScreen extends Component {
       borderColor: colors.white,
     };
 
-    let matchedAnimation = this.props.currentAction;
-    console.log("action: ", matchedAnimation);
-    switch (matchedAnimation) {
-      case "play":
-        matchedAnimation = "play";
-        console.log("play case triggered");
-        break;
-      case "feed":
-        matchedAnimation = "eating";
-        console.log("eating case triggered");
-        break;
-      case "bedTime":
-        matchedAnimation = "sleep";
-        console.log("sleep case triggered");
-        break;
-      case "socialise":
-        matchedAnimation = "talking";
-        console.log("talking case triggered");
-        break;
-      case "pooperScooper":
-        matchedAnimation = "poopScoop";
-        console.log("poopScoop case triggered");
-        break;
-      default:
-        console.log("No match");
-        console.log("normalState case triggered");
-        matchedAnimation = "normalState";
-    }
     return (
       <View style={{ flex: 1 }}>
         <LinearGradient
@@ -176,7 +181,7 @@ class MainGameScreen extends Component {
 
         {/* Dinosaur container2 starts */}
         <View style={style.container2}>
-          <PetScreen currentAction={matchedAnimation} />
+          <PetScreen animationName={this.getAnimationName()} />
         </View>
         {/* Dinosaur container2 ends */}
 
@@ -189,7 +194,7 @@ class MainGameScreen extends Component {
             <View>
               <Text style={style.message1}>{this.props.errorMessage}</Text>
             </View>
-            <TouchableOpacity onPress={this.props.gameEnds}>
+            <TouchableOpacity onPress={this.props.onGameEnds}>
               <View style={{ paddingTop: 50 }}>
                 <Text style={style.message2}>Start New Game</Text>
               </View>

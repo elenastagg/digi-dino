@@ -28,7 +28,7 @@ class PetScreen extends Component {
   render() {
     return (
       <View style={styles.petScreen}>
-        <Animation animationName={this.props.currentAction} />
+        <Animation animationName={this.props.animationName} />
       </View>
     );
   }
